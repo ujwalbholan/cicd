@@ -1,26 +1,14 @@
-name: Staging CI/CD
+name: stage Environment
 
 on:
-  push:
-    branches: [staging]
+    push:
+        branches:
+            - stage
 
 jobs:
-  deploy-staging:
-    runs-on: ubuntu-latest
+    stage-jobs:
+        runs-on: ubuntu-lastest
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
-
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-
-      - name: Deploy to Staging
-        run: curl -X POST "$RENDER_DEPLOY_HOOK_STAGING"
-        # env:
-        #   RENDER_DEPLOY_HOOK_STAGING: ${{ secrets.RENDER_DEPLOY_HOOK_STAGING }}
+        steps:
+            - name: say hello from stage
+              run: echo "👋 Hello from stage environment"
