@@ -1,0 +1,32 @@
+name: Dev Deployment
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Deploy to Development Server
+        env:
+          DEV_SERVER_API_KEY: ${{ secrets.DEV_SERVER_API_KEY }}
+        run: |
+          echo "Deploying to development server..."
+          # Add your deployment commands here
