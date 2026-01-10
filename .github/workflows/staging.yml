@@ -11,4 +11,4 @@ jobs:
 
         steps:
             - name: say hello from stage
-              run: echo "👋 Hello from stage environment"
+              run: echo "Hello from stage environment"
