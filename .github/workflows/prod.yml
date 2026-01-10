@@ -1,26 +1,14 @@
-name: Production CI/CD
+name: Prod Environment
 
 on:
-  push:
-    branches: [main]
+    push:
+        branches:
+            - prod
 
 jobs:
-  deploy-prod:
-    runs-on: ubuntu-latest
+    prod-jobs:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
-
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-
-      - name: Deploy to Production
-        run: curl -X POST "$RENDER_DEPLOY_HOOK_PROD"
-        # env:
-        #   RENDER_DEPLOY_HOOK_PROD: ${{ secrets.RENDER_DEPLOY_HOOK_PROD }}
+        steps:
+            - name: say hello from prod
+              run: echo "👋 Hello from PROD environment"
