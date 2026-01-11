@@ -3,7 +3,7 @@ name: Prod Environment
 on:
     push:
         branches:
-            - prod
+            - main
 
 jobs:
     prod-jobs:
